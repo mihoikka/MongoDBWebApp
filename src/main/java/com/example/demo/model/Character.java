@@ -7,6 +7,7 @@ import java.util.Arrays;
 @Document
 public class Character {
     @Id
+    private CharacterId charId;
     private String name;
     private String Ability;
     private String role;
@@ -15,13 +16,14 @@ public class Character {
     private String[] items;
     private String[] relations;
 
-    public Character(String name, String Ability, String role, String description, int curr_time, String[] items, String[] relations){
+    public Character(CharacterId charId, String Ability, String role, String description, String[] items, String[] relations){
         super();
-        this.name = name;
+        this.charId = charId;
+        this.name = charId.getName();
         this.Ability = Ability;
         this.role = role;
         this.description = description;
-        this.curr_time = curr_time;
+        this.curr_time = charId.getCurr_time();
         this.items = items;
         this.relations = relations;
     }

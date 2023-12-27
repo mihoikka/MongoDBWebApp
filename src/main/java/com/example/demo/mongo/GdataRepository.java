@@ -14,7 +14,7 @@ import java.util.List;
 @Repository("MongoDB_Requests")
 public interface GdataRepository extends MongoRepository<Character, String>{ //, CharData
     @Query("{name:'?0'}")
-    Character findCharacterByName(String name);
+    List<Character> findCharacterByName(String name);
 
     @Query(value = "{curr_time: ?0}", fields = "{'name':1, 'curr_time':1}") //TODO make this a time range
     List<Character> GetCharactersByTime(int time);

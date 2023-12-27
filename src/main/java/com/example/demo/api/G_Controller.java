@@ -32,7 +32,7 @@ public class G_Controller {
     }
 
     @GetMapping("/character/{name}")
-    public Character GetCharacter(@PathVariable String name){
+    public List<Character> GetCharacter(@PathVariable String name){
         return g_repo.findCharacterByName(name);
     }
 
@@ -40,6 +40,10 @@ public class G_Controller {
     public void NewCharacter(@RequestBody Character character){
         g_repo.insert(character);
     }
+
+    // Careful with this one, it nukes the database
+    @DeleteMapping("/character/delete")
+    public void deleteAllChars(){ g_repo.deleteAll();}
 
     @PutMapping("/character/update")
     public Optional<List<Character>> Update_Character(@RequestBody Character character){
