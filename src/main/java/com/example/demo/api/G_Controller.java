@@ -2,6 +2,8 @@ package com.example.demo.api;
 
 import com.example.demo.mongo.GdataRepository;
 import com.example.demo.model.Character;
+//import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.*;
@@ -40,7 +42,7 @@ public class G_Controller {
     }
 
     @PutMapping("/character/update")
-    public Optional<List<Character>> Update_Character(Character character){
+    public Optional<List<Character>> Update_Character(@RequestBody Character character){
         g_repo.save(character);
 
         List<Character> chars = g_repo.findByName(character.getName());
