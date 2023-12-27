@@ -1,12 +1,8 @@
 package com.example.demo.mongo;
-import com.example.demo.user.Character;
-import com.mongodb.lang.NonNull;
-import com.mongodb.lang.NonNullApi;
+import com.example.demo.model.Character;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.data.mongodb.repository.Query;
-import org.springframework.data.mongodb.repository.Update;
 import org.springframework.stereotype.Repository;
-import jakarta.validation.constraints.NotNull;
 
 import java.util.List;
 
@@ -31,7 +27,8 @@ public interface GdataRepository extends MongoRepository<Character, String>{ //,
     }*/
     //@Query(value="{Ability:'?0'}", fields="{'name' : 1, 'quantity' : 1}")
 
-    //List<Character> getAll(); //find(String Ability);
+//    /*@NotNull
+//    List<Character> findAll(Example<Character> chars); //find(String Ability);*/
 
     /*public long count();
 

@@ -1,13 +1,9 @@
 package com.example.demo.api;
-import com.example.demo.mongo.CharData;
 
 import com.example.demo.mongo.GdataRepository;
-import com.example.demo.user.Character;
+import com.example.demo.model.Character;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.data.mongodb.core.query.BasicQuery;
-import org.springframework.data.mongodb.core.query.Criteria;
-import org.springframework.data.mongodb.repository.Query;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -22,10 +18,11 @@ public class G_Controller {
     @Qualifier("MongoDB_Requests")
     GdataRepository g_repo;
 
-    /*@GetMapping("/character")
+    @GetMapping("/character")
     public List<Character> GetCharacters(){
-        return g_repo.getAll();
-    }*/
+        return g_repo.findAll();
+    }
+
     @GetMapping("/character/time/{time}")
     public List<Character> AllCharactersAtTime(@PathVariable String time){
         int time_int = Integer.parseInt(time);
