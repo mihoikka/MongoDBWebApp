@@ -10,17 +10,20 @@ import org.springframework.data.mongodb.repository.config.EnableMongoRepositorie
 
 @SpringBootApplication
 @EnableMongoRepositories
-public class MyFirstSpringbootApplication implements CommandLineRunner {
+public class MyFirstSpringbootApplication { // implements CommandLineRunner {
 
-	@Autowired
-	GdataRepository g_repo;
+//	@Autowired
+//	GdataRepository g_repo;
 
 	public static void main(String[] args) {
+		/*String[] test1 = {"Extending brace"};
+		Character chara = new Character("Myne", "Differential Bonding", "Guardian", "Black hair", 1, new String[]{"Extending brace"}, new String[]{"Hiko"});
+		System.out.print(chara.toString());*/
 
 		SpringApplication.run(MyFirstSpringbootApplication.class, args);
 	}
 
-	@Override
+	/*@Override
 	public void run(String... args) throws Exception{
 		g_repo.deleteAll();
 		g_repo.save(new Character());
@@ -28,6 +31,6 @@ public class MyFirstSpringbootApplication implements CommandLineRunner {
 		for (Character character : g_repo.findAll()){
 
 		}
-	}
+	}*/
 
 }

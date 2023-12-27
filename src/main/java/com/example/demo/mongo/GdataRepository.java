@@ -1,9 +1,12 @@
 package com.example.demo.mongo;
 import com.example.demo.user.Character;
+import com.mongodb.lang.NonNull;
+import com.mongodb.lang.NonNullApi;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.data.mongodb.repository.Query;
 import org.springframework.data.mongodb.repository.Update;
 import org.springframework.stereotype.Repository;
+import jakarta.validation.constraints.NotNull;
 
 import java.util.List;
 
@@ -13,7 +16,7 @@ import java.util.List;
 //spring.data.mongodb.database=userDatabase
 
 @Repository("MongoDB_Requests")
-public interface GdataRepository extends MongoRepository<Character, String>, CharData{
+public interface GdataRepository extends MongoRepository<Character, String>{ //, CharData
     @Query("{name:'?0'}")
     Character findCharacterByName(String name);
 
@@ -28,15 +31,21 @@ public interface GdataRepository extends MongoRepository<Character, String>, Cha
     }*/
     //@Query(value="{Ability:'?0'}", fields="{'name' : 1, 'quantity' : 1}")
 
-    List<Character> getAll(); //find(String Ability);
+    //List<Character> getAll(); //find(String Ability);
 
-    public long count();
+    /*public long count();
 
-    /*@Override
-    public Character insert(Character character);
     @Override
-    public Character save(Character character);*/
+    @NonNull
+    @SuppressWarnings("unchecked")
+    public <Character extends T> Character insert(@NonNull Character character);
+
     @Override
+    @NonNull
+    @SuppressWarnings("unchecked")
+    public <Character extends T>  Character save(@NonNull Character character);*/
+
+
     public List<Character> findByName(String name);
 
 }

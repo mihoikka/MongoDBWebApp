@@ -1,5 +1,6 @@
 package com.example.demo.mongo;
 import com.example.demo.user.Character;
+import com.mongodb.lang.NonNull;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.data.mongodb.repository.Query;
 import org.springframework.stereotype.Repository;
@@ -18,15 +19,15 @@ public interface CharData{
 
     List<Character> GetCharactersByTime(int time);
 
-    List<Character> getAll();
+    //List<Character> getAll();
 
     //List<Character> find(String category);
 
     /*public long count();
 
-    public Character insert(Character character);
+   public <Character extends T> Character insert(@NonNull Character character);
 
-    public Character save(Character character);
+    public <Character extends T>  Character save(Character character);
 
     public List<Character> findByName(String name);*/
 }

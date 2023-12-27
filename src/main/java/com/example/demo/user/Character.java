@@ -2,6 +2,8 @@ package com.example.demo.user;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.util.Arrays;
+
 @Document
 public class Character {
     @Id
@@ -22,6 +24,15 @@ public class Character {
         this.curr_time = curr_time;
         this.items = items;
         this.relations = relations;
+    }
+    public String toString(){
+        return "Name: " + name + "\n"  +
+                "Ability: " + Ability + "\n" +
+                "Role: " + role + "\n" +
+                "Description: " + description + "\n" +
+                "Current Time: " + Integer.toString(curr_time) + "\n" +
+                "Items: " + Arrays.toString(items) + "\n" +
+                "Relations: " + Arrays.toString(relations);
     }
 
     public String getName(){
