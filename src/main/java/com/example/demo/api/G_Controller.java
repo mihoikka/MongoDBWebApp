@@ -45,7 +45,7 @@ public class G_Controller {
     @DeleteMapping("/character/delete")
     public void deleteAllChars(){ g_repo.deleteAll();}
 
-    @PutMapping("/character/update")
+    @PostMapping("/character/update")
     public Optional<List<Character>> Update_Character(@RequestBody Character character){
         g_repo.save(character);
 

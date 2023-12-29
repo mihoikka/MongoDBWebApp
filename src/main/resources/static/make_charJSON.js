@@ -1,19 +1,20 @@
-let item_arr = document.getElementById("char_form").elements["items"].value.split("\n")
-
-let relationship_arr = document.getElementById("char_form").elements["relations"].value.split("\n")
 function submitForm(){
-    alert("Sending JSON");
+
+    let item_arr = document.getElementById("char_form").elements.namedItem("items").value.split("\n")
+
+    let relationship_arr = document.getElementById("char_form").elements.namedItem("relations").value.split("\n")
+
     const xhr = new XMLHttpRequest();
     let form = document.forms[0];
-    xhr.open(form.method, "localhost:8080/api/character/update", true)
-    let body = "{\"charId\" : {\"name\":" + "\"" + document.getElementById("char_form").elements["name"] + "\"" +
-        ", \"curr_time\":" + document.getElementById("char_form").elements["time"] +
-        "}, \"Ability\":" + "\"" + document.getElementById("char_form").elements["ability"] + "\"" +
-        ", \"role\":" + "\""  + document.getElementById("char_form").elements["role"] + "\"" +
-        ", \"description\":" + "\""  + document.getElementById("char_form").elements["description"] + "\"" +
+    xhr.open(form.method, "http://localhost:8080/api/character/update", true)
+    let body = "{\"charId\" : {\"name\":" + "\"" + document.getElementById("char_form").elements.namedItem("first_name").value + "\"" +
+        ", \"curr_time\":" + document.getElementById("char_form").elements.namedItem("curr_time").value +
+        "}, \"Ability\":" + "\"" + document.getElementById("char_form").elements.namedItem("ability").value + "\"" +
+        ", \"role\":" + "\""  + document.getElementById("char_form").elements.namedItem("role").value + "\"" +
+        ", \"description\":" + "\""  + document.getElementById("char_form").elements.namedItem("description").value + "\"" +
         ", \"items\":" + JSON.stringify(item_arr) +
         ", \"relations\":" + JSON.stringify(relationship_arr) +  "}"
     xhr.setRequestHeader('Content-Type', 'application/json; charset UTF-8');
-    //xhr.send(JSON.stringify(body))
     xhr.send(body);
+    alert(body);
 }

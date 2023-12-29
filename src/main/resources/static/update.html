@@ -1,17 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <title>Test</title>
-    </head>
+<head>
+    <meta charset="UTF-8">
+    <title>Test</title>
+</head>
     <body>
-
+    <script type="text/javascript" src="make_charJSON.js"></script>
         <form id="char_form" action="" method="POST" name="myForm">
             <p><label for="fname">First Name:</label>
                 <input type="text" name="first_name" id="fname"></p>
 
             <p><label for="lname">Last Name:</label>
                 <input type="text" name="last_name" id="lname"></p>
+
+            <p><label for="ability">Ability:</label>
+                <input type="text" name="ability" id="ability"></p>
 
             <p><label for="role">Role:</label>
                 <input type="text" name="role" id="role"></p>
@@ -23,15 +26,16 @@
                 <input type="text" name="description" id="char_descr"></p>
 
             <p><label for="items">Notable possessions</label>
-                <textarea id = "items" name="items" rows="20" cols="15">Enter items here, separated by commas</textarea></p>
+                <textarea id = "items" name="items" rows="5" cols="15">Enter items here, separated by commas</textarea></p>
 
             <p><label for="relations">New relationships</label>
-                <textarea id = "relations" name="relations" rows="20" cols="15">Enter new relationships, separated by commas</textarea></p>
+                <textarea id = "relations" name="relations" rows="5" cols="15">Enter new relationships, separated by commas</textarea></p>
 
             <input value="Submit" type="button" onclick="submitForm()">
         </form>
     </body>
 </html>
+
 
 
 
