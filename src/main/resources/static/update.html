@@ -6,7 +6,7 @@
 </head>
     <body>
     <script type="text/javascript" src="make_charJSON.js"></script>
-        <form id="char_form" action="" method="POST" name="myForm">
+        <form id="char_form" method="POST" name="myForm">
             <p><label for="fname">First Name:</label>
                 <input type="text" name="first_name" id="fname"></p>
 
@@ -31,7 +31,8 @@
             <p><label for="relations">New relationships</label>
                 <textarea id = "relations" name="relations" rows="5" cols="15">Enter new relationships, separated by commas</textarea></p>
 
-            <input value="Submit" class="submitButton" type="button" onclick="submitForm()">
+            <input value="Update" class="submitButton" type="button" onclick="submitForm()">
+            <input value="Create New" class="submitButton" type="button" onclick="submitForm('new')">
         </form>
     </body>
 </html>

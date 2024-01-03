@@ -4,6 +4,7 @@ import com.example.demo.mongo.GdataRepository;
 import com.example.demo.model.Character;
 //import jakarta.validation.Valid;
 import com.mongodb.DuplicateKeyException;
+import com.mongodb.MongoWriteException;
 import com.mongodb.WriteError;
 import jakarta.validation.constraints.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,10 +42,9 @@ public class G_Controller {
     @PostMapping("/character/new")
     public void NewCharacter(@RequestBody Character character){
 
-        try {
+        List<Character> chars = g_repo.findByName(character.getName());
+        if (chars.isEmpty()){
             g_repo.insert(character);
-        }catch(DuplicateKeyException w){
-            //TODO send response to warn user of attempted character data overwrite
         }
     }
 
@@ -66,11 +66,13 @@ public class G_Controller {
 
     @PostMapping("/character/update")
     public Optional<List<Character>> Update_Character(@RequestBody Character character){
-        g_repo.save(character);
 
         List<Character> chars = g_repo.findByName(character.getName());
         if (chars.isEmpty()){
             NewCharacter(character);
+        }
+        else{
+            g_repo.save(character);
         }
 
         return Optional.ofNullable(chars);
@@ -79,11 +81,13 @@ public class G_Controller {
     // This is a copy of the other Update Character method, used when the character's name is included in the URL
     @PostMapping("/character/update/{name}")
     public Optional<List<Character>> Update_Character(@RequestBody Character character, @PathVariable String name){
-        g_repo.save(character);
+
 
         List<Character> chars = g_repo.findByName(name);
         if (chars.isEmpty()){
             NewCharacter(character);
+        }else{
+            g_repo.save(character);
         }
 
         return Optional.ofNullable(chars);
