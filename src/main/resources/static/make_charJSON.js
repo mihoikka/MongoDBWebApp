@@ -1,4 +1,6 @@
-function submitForm(){
+
+
+function submitForm(){S
 
     let item_arr = document.getElementById("char_form").elements.namedItem("items").value.split("\n")
 
@@ -18,3 +20,7 @@ function submitForm(){
     xhr.send(body);
     alert(body);
 }
+
+// Supposedly it is better to not use embedded javascript to add function calls to buttons
+const subButton = document.querySelector(".submitButton")
+subButton.addEventListener("click", submitForm)

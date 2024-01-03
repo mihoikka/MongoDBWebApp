@@ -8,6 +8,8 @@ import java.util.Arrays;
 public class Character {
     @Id
     private CharacterId charId;
+    private String firstName;
+    private String lastName;
     private String name;
     private String Ability;
     private String role;
@@ -19,7 +21,9 @@ public class Character {
     public Character(CharacterId charId, String Ability, String role, String description, String[] items, String[] relations){
         super();
         this.charId = charId;
-        this.name = charId.getName();
+        this.firstName = charId.getfirstName();
+        this.lastName = charId.getlastName();
+        this.name = firstName + " " + lastName;
         this.Ability = Ability;
         this.role = role;
         this.description = description;
@@ -28,7 +32,8 @@ public class Character {
         this.relations = relations;
     }
     public String toString(){
-        return "Name: " + name + "\n"  +
+        return "First Name: " + firstName + "\n"  +
+                "Last Name: " + lastName + "\n"  +
                 "Ability: " + Ability + "\n" +
                 "Role: " + role + "\n" +
                 "Description: " + description + "\n" +
@@ -36,12 +41,25 @@ public class Character {
                 "Items: " + Arrays.toString(items) + "\n" +
                 "Relations: " + Arrays.toString(relations);
     }
-
+    //  Getters and Setters
     public String getName(){
         return name;
     }
-    public void setName(String name){
-        this.name = name;
+    public String getfirstName(){
+        return firstName;
+    }
+    public void setfirstName(String last){
+        this.firstName = firstName;
+        // update name variable as well with new firstname
+        this.name = firstName + " " + lastName;
+    }
+    public String getlastName(){
+        return lastName;
+    }
+    public void setlastName(String lastName){
+        this.lastName = lastName;
+        // update name variable as well with new lastname
+        this.name = firstName + " " + lastName;
     }
     public String getAbility(){
         return Ability;

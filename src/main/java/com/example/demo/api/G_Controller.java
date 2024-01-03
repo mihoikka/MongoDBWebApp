@@ -3,6 +3,8 @@ package com.example.demo.api;
 import com.example.demo.mongo.GdataRepository;
 import com.example.demo.model.Character;
 //import jakarta.validation.Valid;
+import com.mongodb.DuplicateKeyException;
+import com.mongodb.WriteError;
 import jakarta.validation.constraints.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -38,18 +40,51 @@ public class G_Controller {
 
     @PostMapping("/character/new")
     public void NewCharacter(@RequestBody Character character){
-        g_repo.insert(character);
+
+        try {
+            g_repo.insert(character);
+        }catch(DuplicateKeyException w){
+            //TODO send response to warn user of attempted character data overwrite
+        }
     }
 
     // Careful with this one, it nukes the database
     @DeleteMapping("/character/delete")
     public void deleteAllChars(){ g_repo.deleteAll();}
 
+    @DeleteMapping("/character/delete/{name}")
+    public void deleteNamedChar(@PathVariable String name){
+        List<Character> chars = g_repo.findByName(name);
+        if (!chars.isEmpty()) {
+            g_repo.deleteAll(chars);
+        }
+        else{
+            //TODO send warning about failed delete of non-existent character
+            //informOfCharacterDeletionFailure()
+        }
+    }
+
     @PostMapping("/character/update")
     public Optional<List<Character>> Update_Character(@RequestBody Character character){
         g_repo.save(character);
 
         List<Character> chars = g_repo.findByName(character.getName());
+        if (chars.isEmpty()){
+            NewCharacter(character);
+        }
+
+        return Optional.ofNullable(chars);
+    }
+
+    // This is a copy of the other Update Character method, used when the character's name is included in the URL
+    @PostMapping("/character/update/{name}")
+    public Optional<List<Character>> Update_Character(@RequestBody Character character, @PathVariable String name){
+        g_repo.save(character);
+
+        List<Character> chars = g_repo.findByName(name);
+        if (chars.isEmpty()){
+            NewCharacter(character);
+        }
 
         return Optional.ofNullable(chars);
     }
