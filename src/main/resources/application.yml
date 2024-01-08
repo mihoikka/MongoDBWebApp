@@ -1,3 +1,4 @@
+---
 spring:
   data:
     mongodb:
@@ -6,4 +7,15 @@ spring:
       database=demo
       username=mhoikka
       password=mhoikka
+---
+server:
+  port: 443
+  ssl:
+    enabled: true
+    key-store-type: PKCS12
+    key-store: classpath:keystore/keystore.p12
+    key-store-password: changeit
+    protocol: TLS
+    enabled-protocols: TLSv1.2
+---
 

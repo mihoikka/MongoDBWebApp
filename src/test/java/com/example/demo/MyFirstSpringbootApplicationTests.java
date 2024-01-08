@@ -19,12 +19,14 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 class MyFirstSpringbootApplicationTests {
 
+	//Test that context loads and controller can be injected
 	@Autowired G_Controller g_controller;
 	@Test
 	void contextLoads() {
 		assertThat(g_controller).isNotNull();
 	}
 
+	//Test home page
 	@LocalServerPort
 	private int port;
 	@Autowired

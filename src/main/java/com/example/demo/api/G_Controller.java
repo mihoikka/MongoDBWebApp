@@ -15,6 +15,7 @@ import java.util.List;
 import java.util.Optional;
 
 //@CrossOrigin(origins = "http://localhost:8081")
+@CrossOrigin(origins = "http://localhost:8080")
 @RestController
 @RequestMapping("/api")
 public class G_Controller {
