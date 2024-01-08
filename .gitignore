@@ -33,4 +33,4 @@ build/
 .vscode/
 
 ### Keystore ###
-!**/src/main/resources/keystore
+!**/src/main/resources/keystore/
