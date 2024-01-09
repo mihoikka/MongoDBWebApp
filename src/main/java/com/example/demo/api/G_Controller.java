@@ -55,6 +55,9 @@ public class G_Controller {
 
     @DeleteMapping("/character/delete/{name}")
     public void deleteNamedChar(@PathVariable String name){
+        //remove "_" character from String name parsed from connection string
+        name = name.replace("_", " ");
+
         List<Character> chars = g_repo.findByName(name);
         if (!chars.isEmpty()) {
             g_repo.deleteAll(chars);
@@ -83,7 +86,7 @@ public class G_Controller {
     @PostMapping("/character/update/{name}")
     public Optional<List<Character>> Update_Character(@RequestBody Character character, @PathVariable String name){
 
-
+        name = name.replace("_", " ");
         List<Character> chars = g_repo.findByName(name);
         if (chars.isEmpty()){
             NewCharacter(character);
